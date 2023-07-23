@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -14,6 +15,7 @@ import Main from "./components/Main";
 import Statistics from "./screens/Statistics";
 import Bookmarks from "./screens/Bookmarks";
 import Profile from "./screens/Profile";
+import { store } from "./state/store";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -28,4 +30,8 @@ const router = createBrowserRouter(
   )
 );
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={router} />);
+root.render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+);
