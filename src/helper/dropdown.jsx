@@ -1,9 +1,12 @@
 import { Menu } from "@headlessui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Dropdown = () => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
+  useEffect(() => {
+    navigate("/home");
+  }, []);
   return (
     <Menu as="div" className="relative inline-block text-left md:hidden ">
       <div>
@@ -43,6 +46,18 @@ const Dropdown = () => {
                 } group flex w-full text-violet-500 hover:text-white items-center rounded-md px-2 py-2 text-sm`}
               >
                 <Profile />
+              </button>
+            )}
+          </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
+              <button
+                onClick={() => navigate("/home")}
+                className={`${
+                  active ? "bg-violet-500 text-white" : "text-gray-900"
+                } group flex w-full items-center text-violet-500 hover:text-white rounded-md px-2 py-2 text-sm`}
+              >
+                <Power />
               </button>
             )}
           </Menu.Item>
@@ -133,6 +148,25 @@ export const Moon = ({ toggle, setToggle }) => {
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+      />
+    </svg>
+  );
+};
+
+const Power = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="tomato"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"
       />
     </svg>
   );

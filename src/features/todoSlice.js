@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { v4 as uuidv4 } from "uuid";
 const initialState = {
   userInfo: localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
@@ -16,10 +16,14 @@ const todoSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(action.payload));
     },
     setTodos: (state, action) => {
-      state.Todos.push(action.payload);
+      state.Todos.push({
+        id: uuidv4(),
+        ...action.payload,
+      });
     },
     logout: (state, action) => {
       state.userInfo = null;
+      localStorage.removeItem("user");
     },
     updateTodo: (state, action) => {
       const updatedTodo = action.payload;
@@ -29,7 +33,8 @@ const todoSlice = createSlice({
       }
     },
     deleteTodo: (state, action) => {
-      state.Todos.filter((todo) => todo.id !== action.payload);
+      const todos = state.Todos.filter((todo) => todo.id !== action.payload);
+      state.Todos = todos;
     },
   },
 });
