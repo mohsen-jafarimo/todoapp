@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setTodos as createTodo } from "../features/todoSlice";
+import { toast } from "react-toastify";
 const Main = () => {
   const [todo, setTodo] = useState({
     title: "",
@@ -33,6 +34,10 @@ const Main = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!todo.title || !todo.author) {
+      toast.error("please fill up your title and author");
+      return null;
+    }
     await dispatch(createTodo({ ...todo }));
     setTodo({
       title: "",

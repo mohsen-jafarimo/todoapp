@@ -18,6 +18,9 @@ const Profile = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    if (!user.firstName || !user.lastName) {
+      return alert("please write ");
+    }
     dispatch(setUser({ ...user }));
   };
   if (userInfo) {
@@ -42,8 +45,8 @@ const Profile = () => {
           <Link to={`/bookmarks`} className="bg-blue-500 p-2 rounded">
             Bookmarks task
           </Link>
-          <Link to={`/statistics`} className="bg-blue-500 p-2 rounded">
-            statistics task
+          <Link to={`/home`} className="bg-blue-500 p-2 rounded">
+            write a task
           </Link>
         </div>
         <button
@@ -52,6 +55,12 @@ const Profile = () => {
         >
           Logout
         </button>
+        <Link
+          to={"/statistics"}
+          className="bg-blue-500 p-2 rounded block md:hidden my-3"
+        >
+          All Todos
+        </Link>
       </div>
     );
   }

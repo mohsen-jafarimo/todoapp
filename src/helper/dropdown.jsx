@@ -65,6 +65,20 @@ const Dropdown = () => {
             {({ active }) => (
               <button
                 onClick={() => {
+                  navigate("/popular");
+                }}
+                className={`${
+                  active ? "bg-violet-500 text-white" : "text-gray-900"
+                } group flex w-full items-center text-violet-500 hover:text-white rounded-md px-2 py-2 text-sm`}
+              >
+                <Popular />
+              </button>
+            )}
+          </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
+              <button
+                onClick={() => {
                   navigate("/bookmarks");
                 }}
                 className={`${
@@ -133,7 +147,7 @@ const Bookmark = () => {
   );
 };
 
-export const Moon = ({ toggle, setToggle }) => {
+export const Moon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +156,6 @@ export const Moon = ({ toggle, setToggle }) => {
       strokeWidth={1.5}
       stroke="currentColor"
       className="w-6 h-6"
-      onClick={() => setToggle(!toggle)}
     >
       <path
         strokeLinecap="round"
@@ -167,6 +180,44 @@ const Power = () => {
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"
+      />
+    </svg>
+  );
+};
+
+const Popular = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="tomato"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+      />
+    </svg>
+  );
+};
+
+export const Day = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
       />
     </svg>
   );

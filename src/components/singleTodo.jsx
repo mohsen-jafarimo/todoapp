@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { deleteTodo, updateTodo } from "../features/todoSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 const SingleTodo = ({ todo }) => {
-  const disparch = useDispatch();
+  const [newTodo, setTodo] = useState({
+    title: "",
+    author: "",
+    task: "",
+    popular: false,
+    bookmark: false,
+    completed: false,
+  });
+  const titleRef = useRef(null);
+  const authorRef = useRef(null);
+  const task_Ref = useRef(null);
+  const dispatch = useDispatch();
+  const handleChange = (e) => {
+    setTodo((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const handleUpdate = () => {
+    titleRef.current.disabled = false;
+    authorRef.current.disabled = false;
+    task_Ref.current.disabled = false;
+    toast.info("click on values to update");
+  };
   return (
     <div className="w-full  self-stretch justify-self-stretch items-center flex space-x-4 bg-blue-500 rounded p-8 font-bold hover:bg-blue-300 transition-all duration-700 ">
       <div className="flex flex-col space-y-2">
@@ -22,7 +46,16 @@ const SingleTodo = ({ todo }) => {
             />
           </svg>
 
-          <span>{todo.title}</span>
+          <input
+            type="text"
+            placeholder={todo.title}
+            value={newTodo.title}
+            disabled
+            name="title"
+            onChange={(e) => handleChange(e)}
+            className="bg-inherit placeholder-white"
+            ref={titleRef}
+          />
         </h2>
         <h2 className="flex items-center space-x-2">
           <svg
@@ -40,7 +73,16 @@ const SingleTodo = ({ todo }) => {
             />
           </svg>
 
-          <span>{todo.author}</span>
+          <input
+            type="text"
+            value={newTodo.author}
+            placeholder={todo.author}
+            ref={authorRef}
+            disabled
+            name="author"
+            onChange={(e) => handleChange(e)}
+            className="bg-inherit placeholder-white"
+          />
         </h2>
       </div>
       <div className="bg-white p-3 rounded flex flex-col space-y-3 text-violet-500">
@@ -60,7 +102,16 @@ const SingleTodo = ({ todo }) => {
             />
           </svg>
         </span>
-        <p>{todo.task}</p>
+        <input
+          type="text"
+          value={newTodo.task}
+          placeholder={todo.task}
+          disabled
+          onChange={(e) => handleChange(e)}
+          name="task"
+          className="bg-inherit placeholder-blue-500"
+          ref={task_Ref}
+        />
       </div>
       <div className="flex flex-col space-y-3">
         <svg
@@ -70,6 +121,21 @@ const SingleTodo = ({ todo }) => {
           strokeWidth={1.5}
           stroke="lightgreen"
           className="w-6 h-6 completed hover:stroke-slate-950"
+          onClick={() => {
+            dispatch(
+              updateTodo({
+                ...newTodo,
+                id: todo.id,
+                popular: todo.popular,
+                bookmark: todo.bookmark,
+                completed: todo.completed,
+              })
+            );
+            titleRef.current.disabled = true;
+            authorRef.current.disabled = true;
+            task_Ref.current.disabled = true;
+            toast.success("Task updated successfully");
+          }}
         >
           <path
             strokeLinecap="round"
@@ -84,6 +150,7 @@ const SingleTodo = ({ todo }) => {
           strokeWidth={1.5}
           stroke="currentColor"
           className="w-6 h-6 update hover:stroke-slate-950"
+          onClick={handleUpdate}
         >
           <path
             strokeLinecap="round"
@@ -97,7 +164,7 @@ const SingleTodo = ({ todo }) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="tomato"
-          onClick={() => disparch(deleteTodo(todo.id))}
+          onClick={() => dispatch(deleteTodo(todo.id))}
           className="w-6 hover:stroke-slate-950 h-6 trash"
         >
           <path

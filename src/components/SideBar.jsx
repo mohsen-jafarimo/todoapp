@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Moon } from "../helper/dropdown";
-import { useSelector } from "react-redux";
+import { Moon, Day } from "../helper/dropdown";
+import { useSelector, useDispatch } from "react-redux";
+import { setToggle } from "../features/toogleSlice";
 const SideBar = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.todo.userInfo);
   const todos = useSelector((state) => state.todo.Todos);
-
+  const { isDark } = useSelector((state) => state.darkMode);
+  const dispatch = useDispatch();
   return (
     <aside className="h-screen  md:mt-16 fixed left-0 hidden md:flex flex-col default-bg w-1/5">
       <div className="p-3 flex flex-col space-y-3 font-bold">
@@ -129,7 +131,7 @@ const SideBar = () => {
           </div>
           {todos.length && (
             <span className="bg-red-500 px-1 rounded-full text-white">
-              {todos.length}
+              {todos?.length || null}
             </span>
           )}
         </div>
@@ -157,9 +159,12 @@ const SideBar = () => {
           <span>Bookmarks</span>
         </div>
         {/* OFF */}
-        <div className="flex items-center space-x-3 hover:bg-white p-2 rounded hover:pl-4 hover:text-violet-500">
-          <Moon />
-          <span>Day</span>
+        <div
+          onClick={() => dispatch(setToggle())}
+          className="flex items-center space-x-3 hover:bg-white p-2 rounded hover:pl-4 hover:text-violet-500"
+        >
+          {isDark ? <Moon /> : <Day />}
+          <span> {isDark ? "Moon" : "Sun"}</span>
         </div>
       </div>
     </aside>

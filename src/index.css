@@ -3,6 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --clr-bg-dark: #1f2937; /* gray-800 */
+  --clr-bg-light: #fafafa; /* zinc-50 */
+
+  --clr-text-dark: #1f2937; /* gray-200 */
+  --clr-text-light: #fafafa; /* zinc-50 */
+}
 .container {
   @apply w-full h-full;
 }
@@ -11,4 +18,12 @@
 }
 .main-bg {
   @apply bg-gradient-to-l from-blue-950 to-blue-700;
+}
+
+.light {
+  background-color: var(--clr-bg-light);
+  color: var(--clr-text-light);
+}
+.dark {
+  @apply bg-gray-800 text-zinc-50;
 }

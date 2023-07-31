@@ -26,11 +26,11 @@ const todoSlice = createSlice({
       localStorage.removeItem("user");
     },
     updateTodo: (state, action) => {
-      const updatedTodo = action.payload;
-      const index = state.findIndex((todo) => todo.id === updatedTodo.id);
-      if (index !== -1) {
-        state[index] = updatedTodo;
-      }
+      const updated = action.payload;
+      const index = state.Todos.findIndex(
+        (todo) => todo.id === action.payload.id
+      );
+      state.Todos[index] = updated;
     },
     deleteTodo: (state, action) => {
       const todos = state.Todos.filter((todo) => todo.id !== action.payload);
