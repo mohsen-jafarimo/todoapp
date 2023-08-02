@@ -25,5 +25,6 @@
   color: var(--clr-text-light);
 }
 .dark {
-  @apply bg-gray-800 text-zinc-50;
+  background-color: #1f2937;
+  color: #fafafa;
 }

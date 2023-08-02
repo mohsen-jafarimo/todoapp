@@ -28,7 +28,7 @@ const SingleTodo = ({ todo }) => {
     toast.info("click on values to update");
   };
   return (
-    <div className="w-full  self-stretch justify-self-stretch items-center flex space-x-4 bg-blue-500 rounded p-8 font-bold hover:bg-blue-300 transition-all duration-700 ">
+    <div className="w-full relative items-center  space-y-3 md:space-x-3 flex flex-col md:flex-row bg-blue-500 rounded p-6 font-bold hover:bg-blue-300 transition-all duration-700 ">
       <div className="flex flex-col space-y-2">
         <h2 className=" flex  items-center space-x-2">
           <svg
@@ -53,7 +53,7 @@ const SingleTodo = ({ todo }) => {
             disabled
             name="title"
             onChange={(e) => handleChange(e)}
-            className="bg-inherit placeholder-white"
+            className="bg-inherit placeholder-white "
             ref={titleRef}
           />
         </h2>
@@ -85,8 +85,8 @@ const SingleTodo = ({ todo }) => {
           />
         </h2>
       </div>
-      <div className="bg-white p-3 rounded flex flex-col space-y-3 text-violet-500">
-        <span>
+      <div className="bg-white p-3  rounded flex flex-col space-y-3 text-violet-500">
+        <div className="flex space-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -101,7 +101,8 @@ const SingleTodo = ({ todo }) => {
               d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
             />
           </svg>
-        </span>
+          <span>Task</span>
+        </div>
         <input
           type="text"
           value={newTodo.task}
@@ -113,7 +114,7 @@ const SingleTodo = ({ todo }) => {
           ref={task_Ref}
         />
       </div>
-      <div className="flex flex-col space-y-3">
+      <div className="flex items-center space-x-4 md:space-x-0 md:flex-col md:space-y-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

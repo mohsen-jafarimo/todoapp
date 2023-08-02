@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Dropdown = () => {
   const navigate = useNavigate();
-  const [toggle, setToggle] = useState(false);
   useEffect(() => {
     navigate("/home");
   }, []);
@@ -89,19 +88,7 @@ const Dropdown = () => {
               </button>
             )}
           </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <button
-                className={`${
-                  active ? "bg-violet-500 text-white" : "text-gray-900"
-                } group flex w-full items-center text-violet-500 hover:text-white rounded-md px-2 py-2 text-sm`}
-              >
-                <Moon toggle={toggle} setToggle={setToggle} />
-              </button>
-            )}
-          </Menu.Item>
         </div>
-        i
       </Menu.Items>
     </Menu>
   );
@@ -173,13 +160,13 @@ const Power = () => {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1.5}
-      stroke="tomato"
+      stroke="currentColor"
       className="w-6 h-6"
     >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"
+        d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
       />
     </svg>
   );

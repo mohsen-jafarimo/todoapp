@@ -24,9 +24,9 @@ const Popular = () => {
           />
         </svg>
       </h3>
-      <div className="flex flex-col space-y-4 items-center">
-        {bookmarks.map((todo, index) => {
-          return <SingleTodo key={index} todo={todo} />;
+      <div className="flex justify-center flex-col space-y-3 ">
+        {bookmarks?.map((bookmark) => {
+          return <SingleTodo todo={bookmark} />;
         })}
       </div>
     </div>
